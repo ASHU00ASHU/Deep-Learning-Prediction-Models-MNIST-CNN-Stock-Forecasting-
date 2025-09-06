@@ -131,7 +131,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👨‍💻 Author
 
-Created by [Your Name] - showcasing different machine learning approaches for classification and prediction tasks.
+Created by ASHUTOSH_SWAIN - showcasing different machine learning approaches for classification and prediction tasks.
 
 ## 🔗 Related Resources
 
