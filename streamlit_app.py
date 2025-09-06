@@ -38,6 +38,115 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Function to generate MNIST-like digit
+def generate_mnist_like_digit(digit=0):
+    """Generate a simple MNIST-like digit"""
+    # Create a 28x28 canvas
+    image = np.zeros((28, 28))
+    
+    if digit == 0:
+        # Draw a simple 0
+        for i in range(6, 22):
+            for j in range(6, 22):
+                if (i-14)**2 + (j-14)**2 < 64 and (i-14)**2 + (j-14)**2 > 36:
+                    image[i, j] = 255
+    elif digit == 1:
+        # Draw a simple 1
+        for i in range(4, 24):
+            for j in range(12, 16):
+                image[i, j] = 255
+        for i in range(4, 8):
+            for j in range(10, 18):
+                image[i, j] = 255
+    elif digit == 2:
+        # Draw a simple 2
+        for i in range(6, 10):
+            for j in range(6, 22):
+                image[i, j] = 255
+        for i in range(10, 18):
+            for j in range(18, 22):
+                image[i, j] = 255
+        for i in range(18, 22):
+            for j in range(6, 22):
+                image[i, j] = 255
+    elif digit == 3:
+        # Draw a simple 3
+        for i in range(6, 22):
+            for j in range(6, 10):
+                image[i, j] = 255
+            for j in range(12, 16):
+                image[i, j] = 255
+            for j in range(18, 22):
+                image[i, j] = 255
+    elif digit == 4:
+        # Draw a simple 4
+        for i in range(6, 18):
+            for j in range(6, 10):
+                image[i, j] = 255
+        for i in range(14, 22):
+            for j in range(6, 22):
+                image[i, j] = 255
+    elif digit == 5:
+        # Draw a simple 5
+        for i in range(6, 10):
+            for j in range(6, 22):
+                image[i, j] = 255
+        for i in range(10, 18):
+            for j in range(6, 10):
+                image[i, j] = 255
+        for i in range(18, 22):
+            for j in range(6, 22):
+                image[i, j] = 255
+    elif digit == 6:
+        # Draw a simple 6
+        for i in range(6, 22):
+            for j in range(6, 10):
+                image[i, j] = 255
+        for i in range(6, 10):
+            for j in range(6, 22):
+                image[i, j] = 255
+        for i in range(14, 22):
+            for j in range(6, 22):
+                image[i, j] = 255
+    elif digit == 7:
+        # Draw a simple 7
+        for i in range(6, 10):
+            for j in range(6, 22):
+                image[i, j] = 255
+        for i in range(6, 22):
+            for j in range(18, 22):
+                image[i, j] = 255
+    elif digit == 8:
+        # Draw a simple 8
+        for i in range(6, 22):
+            for j in range(6, 10):
+                image[i, j] = 255
+            for j in range(12, 16):
+                image[i, j] = 255
+            for j in range(18, 22):
+                image[i, j] = 255
+        for i in range(6, 10):
+            for j in range(6, 22):
+                image[i, j] = 255
+        for i in range(18, 22):
+            for j in range(6, 22):
+                image[i, j] = 255
+    elif digit == 9:
+        # Draw a simple 9
+        for i in range(6, 22):
+            for j in range(6, 10):
+                image[i, j] = 255
+            for j in range(18, 22):
+                image[i, j] = 255
+        for i in range(6, 10):
+            for j in range(6, 22):
+                image[i, j] = 255
+        for i in range(14, 18):
+            for j in range(6, 22):
+                image[i, j] = 255
+    
+    return image
+
 # Header
 st.markdown('<h1 class="main-header">🚀 MNIST Machine Learning Portfolio</h1>', unsafe_allow_html=True)
 st.markdown("### Advanced Neural Networks for Digit Recognition by ASHU00ASHU")
@@ -86,19 +195,22 @@ st.markdown("---")
 st.markdown("## 🎮 Interactive Demo")
 
 # Create a simple digit drawing interface
-st.markdown("### Draw a Digit (0-9)")
-canvas_width = 280
-canvas_height = 280
+st.markdown("### Generate MNIST-like Digits")
 
-# Create a simple drawing interface
-if st.button("Generate Random MNIST-like Image"):
-    # Generate a random 28x28 image that looks like a digit
-    random_image = np.random.rand(28, 28) * 255
+# Digit selector
+selected_digit = st.selectbox("Choose a digit to generate:", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+if st.button("Generate MNIST-like Digit"):
+    # Generate the selected digit
+    digit_image = generate_mnist_like_digit(selected_digit)
+    
     fig, ax = plt.subplots(figsize=(5, 5))
-    ax.imshow(random_image, cmap='gray')
-    ax.set_title("Random MNIST-like Image")
+    ax.imshow(digit_image, cmap='gray')
+    ax.set_title(f"Generated Digit: {selected_digit}")
     ax.axis('off')
     st.pyplot(fig)
+    
+    st.success(f"Generated a simple representation of digit {selected_digit}!")
 
 # Model Performance Visualization
 st.markdown("---")
